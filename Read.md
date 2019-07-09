@@ -95,10 +95,56 @@ catch(err){
     /* 超出滚动 */
 ### 十一) Promise.all 和 axios.all
 - 用法: 所有的promisez成功之后才会走all里面的成功
-
-
+### 十二) vue取原生dom
+操作dom在mounted中
+this.$el.querySelector()  
+1.通过this.$el
+2.通过refs(可以取原生dom也可以取到子组件)
+放在原生dom上取得就是dom,放在组件上取得就是组件
+-设置值ref='自定义的值'
+-取值通过this.$refs.自定义的值
+### 十三)
+-- hash  hashchange 函数
+--history history.push.State({},null,'/a') 刷新改变url不刷新页面
+只要一刷新就找不到了
+改变的方法
+popStatez
 ### 十二)路由重定向
 -redirect
+### 十四) 路由跳转    // 路由的模式守卫跳转
+
+1).router-link 
+2).this.$router.push()
+1.参数为params的跳转方式
+-1)直接拼接路径 :to="{path:`/detail/${item.id}`}"
+    -写params跳转的时候路由必须接受参数通过:/   参数暴露在url中:占位符
+    /:id 表示不固定但是必须有  /:id/:name  多个的时候  多个/:
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component:()=>import('./views/Detail.vue')
+    },
+   
+-2)直接写params参数  
+   :to="{name:'detail',params:{id:item.id}}" //路由上必须定义name
+    {
+      path: '/detail',
+      name: 'detail',
+      component:()=>import('./views/Detail.vue')
+    },
+
+-3)取值:-this.$route.params
+2.参数为query的跳转方式   既可以用name也可以用path
+写query的时候,路由不在需要拼接id(不需要任何处理)
+-1) :to="{name:'detail',query:{id:item.id}}"
+-------router-link有一个Tag的属性 把a标签转成为其他标签
+
+
+
+### 十五)$router 和 $route
+1)$router 表示路由的实例  上面放的是方法 (push,go)
+2)$route  表示路由的信息  属性(params,query)
+
 ## 二、流程*******
 ### 三)项目的目录结构
 - mock 如果自己写模拟数据创建mock文件夹
@@ -116,13 +162,14 @@ catch(err){
 router-link 等于a标签 href
 ### 三)首页
 1)抽离导航变成单独组件  components新建NaV.vue  基础组件/公共组件
-2)引入本地css 在assets文件夹中
+2)引入本地css(icon css) 在assets文件夹中
 远程link引入和本地引入  本地引入是网址然后新建一个css文件夹这是图片css
 3)轮播图 components建立Banner.vue
 4)props传值 子组件定义props
 接收数据的是子组件,传递数据的是父组件
 5)使用轮播图组件  
 npm install vue-awesome-swiper --save mock文件夹下
+```js
 --main.js
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
@@ -180,6 +227,12 @@ Vue.use(Vant);
 测试用8080/#/vant  哈西模式 
 单独访问要自己加上哈西值直接跳转的他会自动加上
 
+###滚动加载更多
+页面滚动到底部的条件:
+scrollTop + clientHeight > scrollHeight:
+###lodash的使用
+npm install lodash
+main.js   import _ from 'lodash'
 
 
 ### mock接口 vue.config.js配置数据

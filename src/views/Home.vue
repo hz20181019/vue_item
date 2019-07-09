@@ -18,8 +18,7 @@
             </li>
           </ul>
         </div>
-        <div>
-          
+        <div>          
         </div>
       </div>
   </div>
@@ -99,7 +98,7 @@ export default {
     // }
     async getAll(){
       //多个请求完成之后把数据集合到一起
-      let [{banner},{list}]=await getHomeAll();
+      let [{banner},{list}] = await getHomeAll();
       this.sliders = banner;
       this.homelist = list;
       // let res = await getHomeAll();

@@ -12,8 +12,8 @@
         <div class="goods-price">{{ formatPrice(goods.price) }}</div>
       </van-cell>
       <van-cell class="goods-express">
-        <van-col span="10">运费：{{ goods.express }}</van-col>
-        <van-col span="14">剩余：{{ goods.remain }}</van-col>
+        <van-col span="10">运费：{{ goods.express }} </van-col>
+        <van-col span="14">剩余：{{ goods.remain }}  | {{shopid}}</van-col>
       </van-cell>
     </van-cell-group>
 
@@ -89,7 +89,17 @@ export default {
       }
     };
   },
-  methods: {
+  computed:{//只要不更新就一直在缓存里面在触发的时候才会走因为会缓存  watch会一直监听
+    shopid(){
+      return this.$route.params.id
+    } 
+  },//拿shopid
+  created(){
+    // this.id = this.$route.params.id; 方法一
+    // console.log(this.$route.query);
+    console.log(this.shopid);//4
+  },
+  methods: { 
     formatPrice() {
       return '¥' + (this.goods.price / 100).toFixed(2);
     },

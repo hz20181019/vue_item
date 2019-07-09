@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <!-- http://localhost:8080/b.html -->
+    <!-- 不刷新页面改变url -->
+    <!-- history模式实现单页应用的原理 -->
+    <a onclick="goto('/a')" href="">去a页面</a>
+    <a onclick="goto('/b')" href="">去b页面</a>
+    <div id="app"></div>
+    <script>
+        // history.replaceState 不在有历史  找不到上一个页面无法前进后退
+        // pushState不刷新新页面改变url
+    function goto(path){
+        history.pushState({},null,path)
+        console.log(path);
+        if(path=='/a'){
+            app.innerHTML = '显示A页面'
+        }
+        if(path=='/b'){
+            app.innerHTML = '显示B页面'
+
+        }//http://localhost:8081/ 一个页面来回切换
+        window.addEventListener("popstate",function(){
+            console.log(location.pathname);
+            if(location.pathname=="./a"){
+                app.innerHTML = "A页面"
+            }
+        })
+    }
+    </script>
+</body>
+</html>

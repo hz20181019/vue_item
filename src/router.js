@@ -3,7 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'history',//地址栏不带#
   base: process.env.BASE_URL,
   routes: [
     {
@@ -17,10 +17,27 @@ export default new Router({
       component:()=>import('./views/List.vue')
     },
     {
-      path: '/detail',
+      path: '/list1',
+      name: 'list1',
+      component:()=>import('./views/List1.vue')
+    },
+    {
+      path: '/pullre',
+      name: 'pullre',
+      component:()=>import('./views/Pullre.vue')
+    },
+    // params传参
+    {
+      path: '/detail/:id',
       name: 'detail',
       component:()=>import('./views/Detail.vue')
     },
+    //query传参
+    // {
+    //   path: '/detail',
+    //   name: 'detail',
+    //   component:()=>import('./views/Detail.vue')
+    // },
     {
       path: '/profile',
       name: 'profile',
@@ -30,6 +47,13 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       component:()=>import('./views/Cart.vue')
+    },
+    // 演示：
+    // 访问http://localhost:8080/demo
+    {
+      path: '/demo',
+      name: 'demo',
+      component:()=>import('./views/demo.vue')
     },
     //配置vant
     {
